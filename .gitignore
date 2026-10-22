@@ -1,0 +1,5 @@
+/rail_system
+/rail_system.exe
+src/*.o
+data/*.txt
+data/*.log
