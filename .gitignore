@@ -1,5 +1,12 @@
+
 /rail_system
 /rail_system.exe
 src/*.o
 data/*.txt
 data/*.log
+
+# Allow only safe demo data to be committed
+!data/demo_trains.txt
+!data/demo_schedules.txt
+!data/demo_users.txt
+!data/demo_reservations.txt

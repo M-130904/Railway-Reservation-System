@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h> // <-- Required for time()
+
 #include "auth.h"
 #include "admin.h"
 #include "passenger.h"
@@ -5,13 +9,14 @@
 #include "utils.h"
 
 int main(void) {
+    srand(time(NULL)); // <-- Seeds the random number generator
     init_data_files();
     register_user("admin", "12345678", ROLE_ADMIN);
 
     int choice;
     do {
         printf("\n==================================\n");
-        printf("   Railway Reservation System     \n");
+        printf("    Railway Reservation System    \n");
         printf("==================================\n");
         printf("1. Passenger Registration\n");
         printf("2. Passenger Login\n");
