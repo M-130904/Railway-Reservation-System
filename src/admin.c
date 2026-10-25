@@ -103,28 +103,43 @@ void admin_menu(void)
             }
 
             printf("Journey Date (YYYY-MM-DD): ");
-            fflush(stdout);
-            if (scanf("%11s", date) != 1) {
-                clear_input_buffer();
-                printf("[ERROR] Failed to read journey date.\n");
-                continue;
-            }
+fflush(stdout);
+if (scanf("%11s", date) != 1) {
+    clear_input_buffer();
+
+    if (feof(stdin)) {
+        return;
+    }
+
+    printf("[ERROR] Failed to read journey date.\n");
+    continue;
+}
 
             printf("Departure (HH:MM): ");
-            fflush(stdout);
-            if (scanf("%5s", dep) != 1) {
-                clear_input_buffer();
-                printf("[ERROR] Failed to read departure time.\n");
-                continue;
-            }
+fflush(stdout);
+if (scanf("%5s", dep) != 1) {
+    clear_input_buffer();
+
+    if (feof(stdin)) {
+        return;
+    }
+
+    printf("[ERROR] Failed to read departure time.\n");
+    continue;
+}
 
             printf("Arrival (HH:MM): ");
-            fflush(stdout);
-            if (scanf("%5s", arr) != 1) {
-                clear_input_buffer();
-                printf("[ERROR] Failed to read arrival time.\n");
-                continue;
-            }
+fflush(stdout);
+if (scanf("%5s", arr) != 1) {
+    clear_input_buffer();
+
+    if (feof(stdin)) {
+        return;
+    }
+
+    printf("[ERROR] Failed to read arrival time.\n");
+    continue;
+}
 
             printf("Capacities [AC1 AC2 AC3 Sleeper]: ");
             fflush(stdout);

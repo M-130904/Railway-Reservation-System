@@ -33,11 +33,13 @@ static int load_reservations_array(ReservationRecord reservations[], int max_siz
     
     while (count < max_size && fgets(line, sizeof(line), f)) {
         ReservationRecord r;
-        if (sscanf(line, "%[^|]|%d|%d|%[^|]|%d|%d|%[^|]|%lf|%d|%d|%[^|]|%[^|]|%s",
-                   r.pnr, &r.train_id, &r.sched_id, r.username, &r.t_class, &r.p_count, 
-                   r.p_details, &r.fare, &r.status, &r.seat_wl, r.txn_id, r.pay_status, r.date) >= 10) {
-            reservations[count++] = r;
-        }
+        if (sscanf(line,
+           "%14[^|]|%d|%d|%49[^|]|%d|%d|%255[^|]|%lf|%d|%d|%19[^|]|%19[^|]|%11s",
+           r.pnr, &r.train_id, &r.sched_id, r.username,
+           &r.t_class, &r.p_count, r.p_details, &r.fare,
+           &r.status, &r.seat_wl, r.txn_id, r.pay_status, r.date) == 13) {
+    reservations[count++] = r;
+}
     }
     fclose(f);
     return count;

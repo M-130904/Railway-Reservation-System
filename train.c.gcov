@@ -1,0 +1,161 @@
+        -:    0:Source:src/train.c
+        -:    0:Graph:build/train.gcno
+        -:    0:Data:build/train.gcda
+        -:    0:Runs:1
+        -:    1:#include "train.h"
+        -:    2:#include "logger.h"
+        -:    3:#include <stdio.h>
+        -:    4:#include <string.h>
+        -:    5:
+        -:    6:#define MAX_TRAINS 100
+        -:    7:
+        -:    8:/* ==========================================
+        -:    9: * IN-MEMORY DATA STRUCTURE (RAM STORAGE)
+        -:   10: * ========================================== */
+        -:   11:static Train g_trains[MAX_TRAINS];
+        -:   12:static int g_train_count = 0;
+        -:   13:
+        -:   14:/* 1. INITIALIZATION: Load data from file into RAM once */
+function init_trains called 45 returned 100% blocks executed 93%
+       45:   15:int init_trains(void) {
+       45:   16:    FILE *f = fopen("data/trains.txt", "r");
+call    0 returned 45
+       45:   17:    g_train_count = 0; // Reset RAM count
+      45*:   18:    if (!f) return 0;
+branch  0 taken 0 (fallthrough)
+branch  1 taken 45
+        -:   19:    
+        -:   20:    char line[256];
+      226:   21:    while (g_train_count < MAX_TRAINS && fgets(line, sizeof(line), f)) {
+branch  0 taken 225 (fallthrough)
+branch  1 taken 1
+call    2 returned 225
+branch  3 taken 181
+branch  4 taken 44 (fallthrough)
+        -:   22:        Train t;
+      181:   23:        if (sscanf(line, "%d|%49[^|]|%19[^|]|%19[^|]|%d|%lf|%d", 
+branch  0 taken 180 (fallthrough)
+branch  1 taken 1
+        -:   24:                   &t.train_id, t.train_name, t.source, t.destination, &t.capacity, &t.base_fare, &t.is_active) == 7) {
+      180:   25:            g_trains[g_train_count++] = t;
+        -:   26:        }
+        -:   27:    }
+       45:   28:    fclose(f);
+call    0 returned 45
+       45:   29:    return g_train_count;
+        -:   30:}
+        -:   31:
+        -:   32:/* 2. TERMINATION / PERSISTENCE: Save RAM array back to disk */
+function save_trains called 107 returned 100% blocks executed 90%
+      107:   33:int save_trains(void) {
+      107:   34:    FILE *f = fopen("data/trains.txt", "w");
+call    0 returned 107
+     107*:   35:    if (!f) return 0;
+branch  0 taken 0 (fallthrough)
+branch  1 taken 107
+        -:   36:    
+     5163:   37:    for (int i = 0; i < g_train_count; i++) {
+branch  0 taken 5056
+branch  1 taken 107 (fallthrough)
+     5056:   38:        fprintf(f, "%d|%s|%s|%s|%d|%.2f|%d\n", 
+     5056:   39:                g_trains[i].train_id, g_trains[i].train_name, 
+     5056:   40:                g_trains[i].source, g_trains[i].destination, 
+call    0 returned 5056
+        -:   41:                g_trains[i].capacity, g_trains[i].base_fare, 
+        -:   42:                g_trains[i].is_active);
+        -:   43:    }
+      107:   44:    fclose(f);
+call    0 returned 107
+      107:   45:    return 1;
+        -:   46:}
+        -:   47:
+        -:   48:/* 3. OPERATIONS: Instant manipulation in RAM */
+        -:   49:
+function add_train called 108 returned 100% blocks executed 93%
+      108:   50:int add_train(int id, const char *name, const char *src, const char *dest, int capacity, double base_fare) {
+      108:   51:    if (g_train_count >= MAX_TRAINS) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 107
+        1:   52:        return 0; // RAM Array full
+        -:   53:    }
+        -:   54:
+        -:   55:    // Check if train ID already exists in RAM
+     5057:   56:    for (int i = 0; i < g_train_count; i++) {
+branch  0 taken 4951
+branch  1 taken 106 (fallthrough)
+     4951:   57:        if (g_trains[i].train_id == id) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 4950
+        1:   58:            return 0; // Duplicate ID
+        -:   59:        }
+        -:   60:    }
+        -:   61:
+        -:   62:    // Populate a new Train structure and add it to the RAM array
+        -:   63:    Train new_t;
+      106:   64:    new_t.train_id = id;
+      106:   65:    snprintf(new_t.train_name, sizeof(new_t.train_name), "%s", name);
+      106:   66:    snprintf(new_t.source, sizeof(new_t.source), "%s", src);
+      106:   67:    snprintf(new_t.destination, sizeof(new_t.destination), "%s", dest);
+      106:   68:    new_t.capacity = capacity;
+      106:   69:    new_t.base_fare = base_fare;
+      106:   70:    new_t.is_active = 1;
+        -:   71:
+      106:   72:    g_trains[g_train_count++] = new_t;
+        -:   73:
+        -:   74:    // Persist changes to disk
+      106:   75:    if (!save_trains()) {
+call    0 returned 106
+branch  1 taken 0 (fallthrough)
+branch  2 taken 106
+    #####:   76:        return 0;
+        -:   77:    }
+        -:   78:
+      106:   79:    log_message("INFO", "Train added successfully");
+call    0 returned 106
+      106:   80:    return 1;
+        -:   81:}
+        -:   82:
+function list_trains called 3 returned 100% blocks executed 100%
+        3:   83:void list_trains(void) {
+        -:   84:    // Reads directly from RAM (super fast!)
+        3:   85:    if (g_train_count == 0) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 2
+        1:   86:        printf("No trains found.\n");
+call    0 returned 1
+        1:   87:        return;
+        -:   88:    }
+        -:   89:
+        2:   90:    printf("\n=== Train Master List ===\n");
+call    0 returned 2
+        4:   91:    for (int i = 0; i < g_train_count; i++) {
+branch  0 taken 2
+branch  1 taken 2 (fallthrough)
+        2:   92:        if (g_trains[i].is_active) {
+branch  0 taken 1 (fallthrough)
+branch  1 taken 1
+        1:   93:            printf("ID: %d | Name: %s | From: %s | To: %s | Cap: %d | Fare: Rs. %.2f\n",
+        1:   94:                   g_trains[i].train_id, g_trains[i].train_name, 
+        1:   95:                   g_trains[i].source, g_trains[i].destination, 
+call    0 returned 1
+        -:   96:                   g_trains[i].capacity, g_trains[i].base_fare);
+        -:   97:        }
+        -:   98:    }
+        -:   99:}
+        -:  100:
+function find_train_by_id called 15 returned 100% blocks executed 100%
+       15:  101:Train* find_train_by_id(int id) {
+        -:  102:    // Directly search the RAM array and return a safe pointer to the element
+      316:  103:    for (int i = 0; i < g_train_count; i++) {
+branch  0 taken 312
+branch  1 taken 4 (fallthrough)
+      312:  104:        if (g_trains[i].train_id == id && g_trains[i].is_active) {
+branch  0 taken 12 (fallthrough)
+branch  1 taken 300
+branch  2 taken 11 (fallthrough)
+branch  3 taken 1
+       11:  105:            return &g_trains[i];
+        -:  106:        }
+        -:  107:    }
+        4:  108:    return NULL;
+        -:  109:}

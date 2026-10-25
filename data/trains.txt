@@ -1,4 +1,5 @@
 101|chennai express|chennai|bengaluru|100|450.00|1
-102|Shatabdi|Delhi|Agra|300|800.00|1
-201|Express One|Delhi|Jaipur|200|1200.50|1
-401|Test Train|A|B|100|500.00|1
+9001|Rajdhani Express|Delhi|Mumbai|500|1500.00|1
+9002|Shatabdi Test|Delhi|Agra|300|800.00|1
+9003|Schedule Test Train|Delhi|Agra|300|800.00|1
+705973|Coverage Test Train|Delhi|Mumbai|100|500.00|1
