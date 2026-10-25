@@ -5,56 +5,61 @@
 
 #define MAX_TRAINS 100
 
-/* Helper function to load file records into an array of structures */
-static int load_trains_array(Train trains[], int max_size) {
+/* ==========================================
+ * IN-MEMORY DATA STRUCTURE (RAM STORAGE)
+ * ========================================== */
+static Train g_trains[MAX_TRAINS];
+static int g_train_count = 0;
+
+/* 1. INITIALIZATION: Load data from file into RAM once */
+int init_trains(void) {
     FILE *f = fopen("data/trains.txt", "r");
+    g_train_count = 0; // Reset RAM count
     if (!f) return 0;
     
     char line[256];
-    int count = 0;
-    while (count < max_size && fgets(line, sizeof(line), f)) {
+    while (g_train_count < MAX_TRAINS && fgets(line, sizeof(line), f)) {
         Train t;
         if (sscanf(line, "%d|%49[^|]|%19[^|]|%19[^|]|%d|%lf|%d", 
                    &t.train_id, t.train_name, t.source, t.destination, &t.capacity, &t.base_fare, &t.is_active) == 7) {
-            trains[count++] = t;
+            g_trains[g_train_count++] = t;
         }
     }
     fclose(f);
-    return count;
+    return g_train_count;
 }
 
-/* Helper function to save the array of structures back to the file */
-static int save_trains_array(const Train trains[], int count) {
+/* 2. TERMINATION / PERSISTENCE: Save RAM array back to disk */
+int save_trains(void) {
     FILE *f = fopen("data/trains.txt", "w");
     if (!f) return 0;
     
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < g_train_count; i++) {
         fprintf(f, "%d|%s|%s|%s|%d|%.2f|%d\n", 
-                trains[i].train_id, trains[i].train_name, 
-                trains[i].source, trains[i].destination, 
-                trains[i].capacity, trains[i].base_fare, 
-                trains[i].is_active);
+                g_trains[i].train_id, g_trains[i].train_name, 
+                g_trains[i].source, g_trains[i].destination, 
+                g_trains[i].capacity, g_trains[i].base_fare, 
+                g_trains[i].is_active);
     }
     fclose(f);
     return 1;
 }
 
-int add_train(int id, const char *name, const char *src, const char *dest, int capacity, double base_fare) {
-    Train trains[MAX_TRAINS];
-    int count = load_trains_array(trains, MAX_TRAINS);
+/* 3. OPERATIONS: Instant manipulation in RAM */
 
-    if (count >= MAX_TRAINS) {
-        return 0; // Array full
+int add_train(int id, const char *name, const char *src, const char *dest, int capacity, double base_fare) {
+    if (g_train_count >= MAX_TRAINS) {
+        return 0; // RAM Array full
     }
 
-    // Check if train ID already exists in the array
-    for (int i = 0; i < count; i++) {
-        if (trains[i].train_id == id) {
+    // Check if train ID already exists in RAM
+    for (int i = 0; i < g_train_count; i++) {
+        if (g_trains[i].train_id == id) {
             return 0; // Duplicate ID
         }
     }
 
-    // Populate a new Train structure and add it to the array
+    // Populate a new Train structure and add it to the RAM array
     Train new_t;
     new_t.train_id = id;
     snprintf(new_t.train_name, sizeof(new_t.train_name), "%s", name);
@@ -64,10 +69,10 @@ int add_train(int id, const char *name, const char *src, const char *dest, int c
     new_t.base_fare = base_fare;
     new_t.is_active = 1;
 
-    trains[count++] = new_t;
+    g_trains[g_train_count++] = new_t;
 
-    // Save the updated array back to disk
-    if (!save_trains_array(trains, count)) {
+    // Persist changes to disk
+    if (!save_trains()) {
         return 0;
     }
 
@@ -76,33 +81,28 @@ int add_train(int id, const char *name, const char *src, const char *dest, int c
 }
 
 void list_trains(void) {
-    Train trains[MAX_TRAINS];
-    int count = load_trains_array(trains, MAX_TRAINS);
-
-    if (count == 0) {
+    // Reads directly from RAM (super fast!)
+    if (g_train_count == 0) {
         printf("No trains found.\n");
         return;
     }
 
     printf("\n=== Train Master List ===\n");
-    for (int i = 0; i < count; i++) {
-        if (trains[i].is_active) {
+    for (int i = 0; i < g_train_count; i++) {
+        if (g_trains[i].is_active) {
             printf("ID: %d | Name: %s | From: %s | To: %s | Cap: %d | Fare: Rs. %.2f\n",
-                   trains[i].train_id, trains[i].train_name, 
-                   trains[i].source, trains[i].destination, 
-                   trains[i].capacity, trains[i].base_fare);
+                   g_trains[i].train_id, g_trains[i].train_name, 
+                   g_trains[i].source, g_trains[i].destination, 
+                   g_trains[i].capacity, g_trains[i].base_fare);
         }
     }
 }
 
 Train* find_train_by_id(int id) {
-    // Using a static array so returning a pointer to an element is safe
-    static Train trains[MAX_TRAINS];
-    int count = load_trains_array(trains, MAX_TRAINS);
-
-    for (int i = 0; i < count; i++) {
-        if (trains[i].train_id == id && trains[i].is_active) {
-            return &trains[i];
+    // Directly search the RAM array and return a safe pointer to the element
+    for (int i = 0; i < g_train_count; i++) {
+        if (g_trains[i].train_id == id && g_trains[i].is_active) {
+            return &g_trains[i];
         }
     }
     return NULL;

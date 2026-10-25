@@ -1,0 +1,17 @@
+abc
+1
+not_an_id
+1
+301
+Train X
+Src
+Dest
+bad_cap
+1
+302
+Train Y
+Src
+Dest
+150
+bad_fare
+6

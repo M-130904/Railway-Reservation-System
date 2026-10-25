@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h> // <-- Required for time()
 
+#include "train.h"       
+#include "schedule.h"
 #include "auth.h"
 #include "admin.h"
 #include "passenger.h"
@@ -11,6 +13,8 @@
 int main(void) {
     srand(time(NULL)); // <-- Seeds the random number generator
     init_data_files();
+    init_trains();
+    init_schedules(); 
     register_user("admin", "12345678", ROLE_ADMIN);
 
     int choice;
