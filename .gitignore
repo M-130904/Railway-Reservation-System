@@ -1,11 +1,28 @@
-
+# Application executables
+/railway-reservation-system
+/railway-reservation-system.exe
 /rail_system
 /rail_system.exe
+
+# Compiled object files
+*.o
 src/*.o
-data/*.txt
+
+# GCC coverage data and source-level coverage output
+*.gcda
+*.gcno
+*.gcov
+
+# Generated build artifacts, test binaries, and coverage reports
+/build/
+
+# Runtime application logs
 data/*.log
 
-# Allow only safe demo data to be committed
+# Ignore application/runtime data by default
+data/*.txt
+
+# Allow safe demo data to be committed
 !data/demo_trains.txt
 !data/demo_schedules.txt
 !data/demo_users.txt
