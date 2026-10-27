@@ -1,0 +1,1209 @@
+Checking src/admin.c ...
+include/types.h:56:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+    int ac1_cap, ac2_cap, ac3_cap, sl_cap;
+               ^
+include/types.h:57:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+    int ac1_booked, ac2_booked, ac3_booked, sl_booked;
+                  ^
+src/admin.c:33:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            int id, capacity;
+                  ^
+src/admin.c:34:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            char name[50], src[20], dest[20];
+                         ^
+src/admin.c:86:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            int sched_id, train_id, ac1, ac2, ac3, sl;
+                        ^
+src/admin.c:87:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            char date[12], dep[6], arr[6];
+                         ^
+src/admin.c:75:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+            if (add_train(id, name, src, dest, capacity, base_fare)) {
+               ^
+src/admin.c:110:8: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    if (feof(stdin)) {
+       ^
+src/admin.c:123:8: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    if (feof(stdin)) {
+       ^
+src/admin.c:136:8: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    if (feof(stdin)) {
+       ^
+src/admin.c:153:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+            if (add_schedule(sched_id, train_id, date, dep, arr,
+               ^
+src/admin.c:111:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/admin.c:124:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/admin.c:137:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/admin.c:167:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.7]
+        }
+        ^
+src/admin.c:13:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("\n=== Administrator Menu ===\n");
+              ^
+src/admin.c:14:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("1. Add Train\n");
+              ^
+src/admin.c:15:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("2. List Trains\n");
+              ^
+src/admin.c:16:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("3. Add Train Schedule\n");
+              ^
+src/admin.c:17:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("4. List Train Schedules\n");
+              ^
+src/admin.c:18:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("5. Generate System Reports\n");
+              ^
+src/admin.c:19:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("6. Logout\n");
+              ^
+src/admin.c:20:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("Enter choice: ");
+              ^
+src/admin.c:21:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fflush(stdout);
+              ^
+src/admin.c:25:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("[ERROR] Invalid menu choice.\n");
+                  ^
+src/admin.c:37:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Train ID: ");
+                  ^
+src/admin.c:38:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:41:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Invalid train ID.\n");
+                      ^
+src/admin.c:46:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Train Name: ");
+                  ^
+src/admin.c:47:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:50:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Source: ");
+                  ^
+src/admin.c:51:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:54:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Destination: ");
+                  ^
+src/admin.c:55:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:58:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Capacity: ");
+                  ^
+src/admin.c:59:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:62:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Invalid capacity.\n");
+                      ^
+src/admin.c:66:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Base Fare: ");
+                  ^
+src/admin.c:67:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:70:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Invalid base fare.\n");
+                      ^
+src/admin.c:76:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[SUCCESS] Train added!\n");
+                      ^
+src/admin.c:78:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Failed to add train.\n");
+                      ^
+src/admin.c:89:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Schedule ID: ");
+                  ^
+src/admin.c:90:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:93:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Invalid schedule ID.\n");
+                      ^
+src/admin.c:97:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Train ID: ");
+                  ^
+src/admin.c:98:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:101:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Invalid train ID.\n");
+                      ^
+src/admin.c:105:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Journey Date (YYYY-MM-DD): ");
+                  ^
+src/admin.c:106:7: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+fflush(stdout);
+      ^
+src/admin.c:114:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("[ERROR] Failed to read journey date.\n");
+          ^
+src/admin.c:118:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Departure (HH:MM): ");
+                  ^
+src/admin.c:119:7: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+fflush(stdout);
+      ^
+src/admin.c:127:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("[ERROR] Failed to read departure time.\n");
+          ^
+src/admin.c:131:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Arrival (HH:MM): ");
+                  ^
+src/admin.c:132:7: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+fflush(stdout);
+      ^
+src/admin.c:140:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("[ERROR] Failed to read arrival time.\n");
+          ^
+src/admin.c:144:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Capacities [AC1 AC2 AC3 Sleeper]: ");
+                  ^
+src/admin.c:145:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fflush(stdout);
+                  ^
+src/admin.c:148:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Invalid capacity values.\n");
+                      ^
+src/admin.c:155:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[SUCCESS] Schedule added!\n");
+                      ^
+src/admin.c:157:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Failed to add schedule.\n");
+                      ^
+src/admin.c:166:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("[ERROR] Please select a valid option.\n");
+                  ^
+include/types.h:4:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+include/types.h:7:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.10]
+#include <time.h>
+^
+1/15 files checked 9% done
+Checking src/auth.c ...
+src/auth.c:37:47: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+            if (strcmp(u_name, username) == 0 && strcmp(u_pass, password) == 0) {
+                                              ^
+src/auth.c:34:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+        char u_name[50], u_pass[50];
+                       ^
+src/auth.c:7:8: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    if (f) {
+       ^
+src/auth.c:8:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+        while (fgets(line, sizeof(line), f)) {
+              ^
+src/auth.c:33:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    while (fgets(line, sizeof(line), f)) {
+          ^
+src/auth.c:13:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+                    return 0;
+                    ^
+src/auth.c:21:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!f) return 0;
+            ^
+src/auth.c:30:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!f) return 0;
+            ^
+src/auth.c:41:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+                return 1;
+                ^
+src/auth.c:12:27: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                    fclose(f);
+                          ^
+src/auth.c:17:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fclose(f);
+              ^
+src/auth.c:22:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fprintf(f, "%s|%s|%d\n", username, password, role);
+           ^
+src/auth.c:23:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/auth.c:39:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                fclose(f);
+                      ^
+src/auth.c:45:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+2/15 files checked 12% done
+Checking src/booking.c ...
+src/booking.c:30:51: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    double total_fare = t->base_fare * multiplier * p_count;
+                                                  ^
+src/booking.c:163:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+    char *line = malloc(512);
+               ^
+src/booking.c:244:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+    char *line = malloc(512);
+               ^
+src/booking.c:28:47: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                        (t_class == CLASS_AC2 ? 1.8 :
+                                              ^
+src/booking.c:29:47: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                        (t_class == CLASS_AC3 ? 1.4 : 1.0));
+                                              ^
+src/booking.c:72:29: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    if ((*booked) + p_count <= (*cap)) {
+                            ^
+src/booking.c:89:30: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+        while (s_count < 100 &&
+                             ^
+src/booking.c:99:60: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+            if (sscanf(lines[i], "%d|%d", &sid, &tid) == 2 &&
+                                                           ^
+src/booking.c:140:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                i < p_count - 1 ? ";" : "");
+                  ^
+src/booking.c:190:34: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                    (status == 2 ? "WAITLIST" : "CANCELLED");
+                                 ^
+src/booking.c:194:35: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                    (t_class == 2 ? "AC 2-Tier" :
+                                  ^
+src/booking.c:195:35: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                    (t_class == 3 ? "AC 3-Tier" : "Sleeper"));
+                                  ^
+src/booking.c:273:34: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                    (status == 2 ? "WL" : "CANCELLED");
+                                 ^
+src/booking.c:97:20: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            int sid, tid;
+                   ^
+src/booking.c:174:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+        char pnr[15], username[50], p_details[256];
+                    ^
+src/booking.c:175:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+        char txn_id[20], pay_status[20], date[12];
+                       ^
+src/booking.c:176:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+        int train_id, sched_id, t_class, p_count, status, seat_wl;
+                    ^
+src/booking.c:257:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+        char pnr[15], username[50], p_details[256];
+                    ^
+src/booking.c:258:24: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+        char txn_id[20], pay_status[20], date[12];
+                       ^
+src/booking.c:259:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+        int train_id, sched_id, t_class, p_count, status, seat_wl;
+                    ^
+src/booking.c:85:8: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    if (fs_read) {
+       ^
+src/booking.c:114:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+        if (fs_write) {
+           ^
+src/booking.c:173:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    while (fgets(line, 512, f)) {
+          ^
+src/booking.c:256:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    while (fgets(line, 512, f)) {
+          ^
+src/booking.c:18:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/booking.c:24:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/booking.c:35:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/booking.c:127:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/booking.c:159:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/booking.c:168:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/booking.c:240:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/booking.c:249:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/booking.c:17:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Train ID %d not found or inactive!\n", train_id);
+              ^
+src/booking.c:23:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Schedule ID %d not found or inactive!\n", schedule_id);
+              ^
+src/booking.c:34:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Payment process aborted or failed.\n");
+              ^
+src/booking.c:41:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    strcpy(out_ticket->username, username);
+          ^
+src/booking.c:50:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    strcpy(out_ticket->journey_date, s->journey_date);
+          ^
+src/booking.c:51:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    strcpy(out_ticket->transaction_id, txn_id);
+          ^
+src/booking.c:52:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    strcpy(out_ticket->payment_status, "SUCCESS");
+          ^
+src/booking.c:94:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fclose(fs_read);
+              ^
+src/booking.c:101:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                snprintf(lines[i], sizeof(lines[i]),
+                        ^
+src/booking.c:116:22: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                fputs(lines[i], fs_write);
+                     ^
+src/booking.c:118:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fclose(fs_write);
+                  ^
+src/booking.c:126:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Could not open reservations.txt for writing!\n");
+              ^
+src/booking.c:130:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fprintf(f, "%s|%d|%d|%s|%d|%d|",
+           ^
+src/booking.c:136:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fprintf(f, "%s:%d:%c%s",
+               ^
+src/booking.c:143:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fprintf(f, "|%.2f|%d|%d|%s|%s|%s\n",
+           ^
+src/booking.c:148:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/booking.c:158:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("No bookings found.\n");
+              ^
+src/booking.c:166:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fclose(f);
+              ^
+src/booking.c:167:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("Memory allocation failed.\n");
+              ^
+src/booking.c:197:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("\n========================================\n");
+                      ^
+src/booking.c:198:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("             TICKET DETAILS             \n");
+                      ^
+src/booking.c:199:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("========================================\n");
+                      ^
+src/booking.c:200:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" PNR Number   : %s\n", pnr);
+                      ^
+src/booking.c:201:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" Train ID     : %d\n", train_id);
+                      ^
+src/booking.c:202:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" Schedule ID  : %d\n", sched_id);
+                      ^
+src/booking.c:203:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" Journey Date : %s\n", date);
+                      ^
+src/booking.c:204:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" Username     : %s\n", username);
+                      ^
+src/booking.c:205:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" Class        : %s\n", class_str);
+                      ^
+src/booking.c:206:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" Status       : %s\n", status_str);
+                      ^
+src/booking.c:209:27: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                    printf(" Seat Number  : %d\n", seat_wl);
+                          ^
+src/booking.c:213:27: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                    printf(" Waitlist No  : WL %d\n", seat_wl);
+                          ^
+src/booking.c:216:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" Total Fare   : Rs. %.2f (%s)\n", fare, pay_status);
+                      ^
+src/booking.c:217:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf(" Passengers   : %s\n", p_details);
+                      ^
+src/booking.c:218:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("========================================\n");
+                      ^
+src/booking.c:224:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/booking.c:227:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("PNR not found.\n");
+              ^
+src/booking.c:239:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("No history found.\n");
+              ^
+src/booking.c:247:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fclose(f);
+              ^
+src/booking.c:248:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("Memory allocation failed.\n");
+              ^
+src/booking.c:252:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("\n=== Booking History for %s ===\n", username_target);
+          ^
+src/booking.c:275:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[%d] PNR: %s | Train: %d | Date: %s | Status: %s | Fare: Rs. %.2f\n",
+                      ^
+src/booking.c:282:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("No bookings found for this user.\n");
+              ^
+src/booking.c:285:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/booking.c:231:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.3]
+    free(line);
+        ^
+src/booking.c:288:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.3]
+       free(line);
+           ^
+src/booking.c:8:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+3/15 files checked 32% done
+Checking src/cancellation.c ...
+src/cancellation.c:181:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.3]
+    int ok = !ferror(f);
+           ^
+src/cancellation.c:215:35: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+                records[i].status == STATUS_WAITLIST) {
+                                  ^
+src/cancellation.c:292:38: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    if (records[target_index].status == STATUS_CANCELLED) {
+                                     ^
+src/cancellation.c:317:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    if (previous_status == STATUS_CONFIRMED) {
+                        ^
+src/cancellation.c:85:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    while (count < MAX_RECORDS && fgets(line, sizeof(line), f)) {
+                               ^
+src/cancellation.c:116:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+        if (fields != 14 || s.schedule_id != schedule_id) continue;
+                         ^
+src/cancellation.c:143:27: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+        if (new_count < 0 || new_count > capacity) return 0;
+                          ^
+src/cancellation.c:184:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    if (ok && booked_after != NULL) {
+           ^
+src/cancellation.c:201:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    while (count < MAX_RECORDS && fgets(line, sizeof(line), f)) {
+                               ^
+src/cancellation.c:213:55: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+            if (records[i].schedule_id == schedule_id &&
+                                                      ^
+src/cancellation.c:214:55: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                records[i].train_class == train_class &&
+                                                      ^
+src/cancellation.c:259:21: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    if (pnr == NULL || pnr[0] == '\0') {
+                    ^
+src/cancellation.c:275:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    while (count < MAX_RECORDS && fgets(line, sizeof(line), f)) {
+                               ^
+src/cancellation.c:245:8: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    if (promoted_any) {
+       ^
+src/cancellation.c:209:14: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.4]
+    for (;;) {
+             ^
+src/cancellation.c:79:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!f) return 0;
+            ^
+src/cancellation.c:139:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+                return 0;
+                ^
+src/cancellation.c:172:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!found) return 0;
+                ^
+src/cancellation.c:175:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!f) return 0;
+            ^
+src/cancellation.c:195:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!f) return;
+            ^
+src/cancellation.c:247:18: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        if (!wf) return;
+                 ^
+src/cancellation.c:261:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/cancellation.c:267:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/cancellation.c:289:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/cancellation.c:294:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/cancellation.c:303:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/cancellation.c:324:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+            return 0;
+            ^
+src/cancellation.c:221:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.6]
+        if (candidate_index < 0) break;
+        ^
+src/cancellation.c:52:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fprintf(
+           ^
+src/cancellation.c:86:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        snprintf(lines[count], sizeof(lines[count]), "%s", line);
+                ^
+src/cancellation.c:89:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/cancellation.c:148:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        snprintf(
+                ^
+src/cancellation.c:178:14: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fputs(lines[i], f);
+             ^
+src/cancellation.c:182:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/cancellation.c:202:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        parse_reservation(line, &records[count]);
+                         ^
+src/cancellation.c:205:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/cancellation.c:237:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf(
+              ^
+src/cancellation.c:253:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fclose(wf);
+              ^
+src/cancellation.c:260:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Invalid PNR.\n");
+              ^
+src/cancellation.c:266:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Cannot open reservations.txt.\n");
+              ^
+src/cancellation.c:276:26: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        parse_reservation(line, &records[count]);
+                         ^
+src/cancellation.c:285:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/cancellation.c:288:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] PNR not found.\n");
+              ^
+src/cancellation.c:293:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[INFO] This ticket is already cancelled.\n");
+              ^
+src/cancellation.c:302:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Cannot save cancellation.\n");
+              ^
+src/cancellation.c:310:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(wf);
+          ^
+src/cancellation.c:312:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(
+          ^
+src/cancellation.c:323:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("[ERROR] Ticket cancelled, but seat counts could not be updated.\n");
+                  ^
+src/cancellation.c:327:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf(
+              ^
+src/cancellation.c:5:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+4/15 files checked 50% done
+Checking src/file_io.c ...
+src/file_io.c:6:42: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    f = fopen("data/users.txt", "a"); if (f) fclose(f);
+                                         ^
+src/file_io.c:7:43: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    f = fopen("data/trains.txt", "a"); if (f) fclose(f);
+                                          ^
+src/file_io.c:8:46: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    f = fopen("data/schedules.txt", "a"); if (f) fclose(f);
+                                             ^
+src/file_io.c:9:49: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    f = fopen("data/reservations.txt", "a"); if (f) fclose(f);
+                                                ^
+src/file_io.c:10:40: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+    f = fopen("data/app.log", "a"); if (f) fclose(f);
+                                       ^
+5/15 files checked 51% done
+Checking src/logger.c ...
+src/logger.c:5:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!file) return;
+               ^
+src/logger.c:10:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
+            ^
+src/logger.c:12:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fprintf(file, "[%s] [%s] %s\n", time_str, level, message);
+           ^
+src/logger.c:13:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(file);
+          ^
+6/15 files checked 52% done
+Checking src/main.c ...
+src/main.c:45:32: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+        } else if (choice == 2 || choice == 3) {
+                               ^
+src/main.c:52:40: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                if (role == ROLE_ADMIN && choice == 3) {
+                                       ^
+src/main.c:54:51: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                } else if (role == ROLE_PASSENGER && choice == 2) {
+                                                  ^
+src/main.c:37:30: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            char username[50], password[50];
+                             ^
+src/main.c:46:30: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            char username[50], password[50];
+                             ^
+src/main.c:40:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+            if (register_user(username, password, ROLE_PASSENGER)) {
+               ^
+src/main.c:51:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+            if (authenticate_user(username, password, &role)) {
+               ^
+src/main.c:62:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.7]
+        }
+        ^
+src/main.c:16:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    init_trains();
+               ^
+src/main.c:17:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    init_schedules();
+                  ^
+src/main.c:18:18: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    register_user("admin", "12345678", ROLE_ADMIN);
+                 ^
+src/main.c:22:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("\n==================================\n");
+              ^
+src/main.c:23:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("    Railway Reservation System    \n");
+              ^
+src/main.c:24:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("==================================\n");
+              ^
+src/main.c:25:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("1. Passenger Registration\n");
+              ^
+src/main.c:26:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("2. Passenger Login\n");
+              ^
+src/main.c:27:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("3. Administrator Login\n");
+              ^
+src/main.c:28:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("4. Exit\n");
+              ^
+src/main.c:29:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("Enter choice: ");
+              ^
+src/main.c:38:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Enter Username: "); safe_fgets(username, sizeof(username));
+                  ^
+src/main.c:39:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Enter Password: "); safe_fgets(password, sizeof(password));
+                  ^
+src/main.c:41:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[SUCCESS] Registration successful! Please login.\n");
+                      ^
+src/main.c:43:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] User already exists.\n");
+                      ^
+src/main.c:47:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Username: "); safe_fgets(username, sizeof(username));
+                  ^
+src/main.c:48:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Password: "); safe_fgets(password, sizeof(password));
+                  ^
+src/main.c:57:27: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                    printf("[ACCESS DENIED] Role mismatch.\n");
+                          ^
+src/main.c:60:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Invalid credentials.\n");
+                      ^
+src/main.c:65:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("Exiting system. Goodbye!\n");
+          ^
+src/main.c:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+src/main.c:3:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.10]
+#include <time.h> // <-- Required for time()
+^
+7/15 files checked 56% done
+Checking src/passenger.c ...
+src/passenger.c:48:60: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                       t.pnr, t.status == STATUS_CONFIRMED ? "CONFIRMED" : "WAITLIST");
+                                                           ^
+src/passenger.c:25:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            char src[20], dest[20], date[12];
+                        ^
+src/passenger.c:31:25: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.3]
+            int train_id, sched_id, class_choice, p_count;
+                        ^
+src/passenger.c:46:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+            if (book_ticket(username, train_id, sched_id, (TrainClass)class_choice, p_count, passengers, &t)) {
+               ^
+src/passenger.c:57:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+            if (cancel_ticket(pnr)) {
+               ^
+src/passenger.c:64:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.7]
+        }
+        ^
+src/passenger.c:10:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("\n=== Passenger Menu ===\n");
+              ^
+src/passenger.c:11:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("1. Search Trains Between Stations\n");
+              ^
+src/passenger.c:12:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("2. Book Ticket & Pay\n");
+              ^
+src/passenger.c:13:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("3. View Booking by PNR\n");
+              ^
+src/passenger.c:14:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("4. Cancel Ticket\n");
+              ^
+src/passenger.c:15:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("5. View Booking History\n");
+              ^
+src/passenger.c:16:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("6. Logout\n");
+              ^
+src/passenger.c:17:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("Enter choice: "); fflush(stdout);
+              ^
+src/passenger.c:26:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Source City: "); fflush(stdout); safe_fgets(src, sizeof(src));
+                  ^
+src/passenger.c:27:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Destination City: "); fflush(stdout); safe_fgets(dest, sizeof(dest));
+                  ^
+src/passenger.c:28:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Journey Date (YYYY-MM-DD): "); fflush(stdout); safe_fgets(date, sizeof(date));
+                  ^
+src/passenger.c:32:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Train ID: "); fflush(stdout); scanf("%d", &train_id);
+                  ^
+src/passenger.c:33:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Schedule ID: "); fflush(stdout); scanf("%d", &sched_id);
+                  ^
+src/passenger.c:34:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Class (1:AC1, 2:AC2, 3:AC3, 4:Sleeper): "); fflush(stdout); scanf("%d", &class_choice);
+                  ^
+src/passenger.c:35:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Number of Passengers (max %d): ", MAX_PASSENGERS); fflush(stdout); scanf("%d", &p_count);
+                  ^
+src/passenger.c:40:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("Passenger %d Name: ", i + 1); fflush(stdout); safe_fgets(passengers[i].name, sizeof(passengers[i].name));
+                      ^
+src/passenger.c:41:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("Passenger %d Age: ", i + 1); fflush(stdout); scanf("%d", &passengers[i].age); clear_input_buffer();
+                      ^
+src/passenger.c:42:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("Passenger %d Gender (M/F/O): ", i + 1); fflush(stdout); scanf("%c", &passengers[i].gender); clear_input_buffer();
+                      ^
+src/passenger.c:47:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("\n[SUCCESS] Booking confirmed! PNR: %s | Status: %s\n",
+                      ^
+src/passenger.c:52:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Enter PNR: "); fflush(stdout); safe_fgets(pnr, sizeof(pnr));
+                  ^
+src/passenger.c:56:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Enter PNR to cancel: "); fflush(stdout); safe_fgets(pnr, sizeof(pnr));
+                  ^
+src/passenger.c:58:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[SUCCESS] Ticket cancelled and refund processed.\n");
+                      ^
+src/passenger.c:60:23: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                printf("[ERROR] Cancellation failed.\n");
+                      ^
+8/15 files checked 63% done
+Checking src/payment.c ...
+src/payment.c:21:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/payment.c:31:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+            return 0;
+            ^
+src/payment.c:7:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("\n========================================\n");
+          ^
+src/payment.c:8:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("         SECURE PAYMENT GATEWAY         \n");
+          ^
+src/payment.c:9:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("========================================\n");
+          ^
+src/payment.c:10:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("Total Fare to Pay : Rs. %.2f\n", amount);
+          ^
+src/payment.c:11:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("Select Payment Method:\n");
+          ^
+src/payment.c:12:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("1. UPI (GooglePay / PhonePe / Paytm)\n");
+          ^
+src/payment.c:13:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("2. Credit / Debit Card\n");
+          ^
+src/payment.c:14:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("3. Net Banking\n");
+          ^
+src/payment.c:15:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("Enter choice (1-3): ");
+          ^
+src/payment.c:16:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fflush(stdout); // <-- THIS FORCES THE PROMPT TO APPEAR ON SCREEN IMMEDIATELY!
+          ^
+src/payment.c:20:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Invalid payment input.\n");
+              ^
+src/payment.c:27:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("Enter UPI ID (e.g., user@okhdfcbank): "); fflush(stdout);
+              ^
+src/payment.c:30:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("[FAILED] Invalid UPI ID format.\n");
+                  ^
+src/payment.c:34:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("Processing secure bank authorization...\n");
+              ^
+src/payment.c:38:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    sprintf(out_txn_id, "TXN%d", rand_num);
+           ^
+src/payment.c:39:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("[SUCCESS] Payment complete! Ref: %s\n", out_txn_id);
+          ^
+9/15 files checked 66% done
+Checking src/report.c ...
+src/report.c:34:29: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    while (count < max_size && fgets(line, sizeof(line), f)) {
+                            ^
+src/report.c:41:27: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-13.3]
+    reservations[count++] = r;
+                          ^
+src/report.c:29:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!f) return 0;
+            ^
+src/report.c:54:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/report.c:74:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.7]
+        }
+        ^
+src/report.c:44:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/report.c:53:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("\n[REPORT] No reservations recorded yet.\n");
+              ^
+src/report.c:77:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("\n==================================================\n");
+          ^
+src/report.c:78:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("         RAILWAY SYSTEM MANAGEMENT REPORT          \n");
+          ^
+src/report.c:79:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("==================================================\n");
+          ^
+src/report.c:80:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" Total Reservations Recorded : %d\n", total_bookings);
+          ^
+src/report.c:81:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" ------------------------------------------------\n");
+          ^
+src/report.c:82:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" [CONFIRMED TICKETS]         : %d\n", confirmed_count);
+          ^
+src/report.c:83:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" [WAITLISTED TICKETS]        : %d\n", waitlist_count);
+          ^
+src/report.c:84:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" [CANCELLED TICKETS]         : %d\n", cancelled_count);
+          ^
+src/report.c:85:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" ------------------------------------------------\n");
+          ^
+src/report.c:86:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" Gross Revenue Collected     : Rs. %.2f\n", total_revenue);
+          ^
+src/report.c:87:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" Total Refunds Processed     : Rs. %.2f\n", total_refunds);
+          ^
+src/report.c:88:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf(" Net System Revenue          : Rs. %.2f\n", total_revenue - total_refunds);
+          ^
+src/report.c:89:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("==================================================\n");
+          ^
+src/report.c:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+10/15 files checked 73% done
+Checking src/schedule.c ...
+src/schedule.c:30:45: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    while (g_schedule_count < MAX_SCHEDULES &&
+                                            ^
+src/schedule.c:111:22: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    if (date == NULL || dep == NULL || arr == NULL) {
+                     ^
+src/schedule.c:128:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    if (ac1 < 0 || ac2 < 0 || ac3 < 0 || sl < 0) {
+                ^
+src/schedule.c:198:52: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+        if (g_schedules[i].schedule_id == sched_id &&
+                                                   ^
+src/schedule.c:51:45: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-13.3]
+            g_schedules[g_schedule_count++] = s;
+                                            ^
+src/schedule.c:156:37: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-13.3]
+    g_schedules[g_schedule_count++] = new_s;
+                                    ^
+src/schedule.c:178:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+        if (g_schedules[i].is_active) {
+           ^
+src/schedule.c:27:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/schedule.c:65:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/schedule.c:88:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+            return 0;
+            ^
+src/schedule.c:93:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/schedule.c:107:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/schedule.c:112:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/schedule.c:117:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/schedule.c:123:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+            return 0;
+            ^
+src/schedule.c:129:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/schedule.c:161:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/schedule.c:172:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/schedule.c:200:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+            return &g_schedules[i];
+            ^
+src/schedule.c:55:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/schedule.c:87:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            fclose(f);
+                  ^
+src/schedule.c:138:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    snprintf(new_s.journey_date, sizeof(new_s.journey_date),
+            ^
+src/schedule.c:140:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    snprintf(new_s.departure, sizeof(new_s.departure),
+            ^
+src/schedule.c:142:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    snprintf(new_s.arrival, sizeof(new_s.arrival),
+            ^
+src/schedule.c:171:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("No schedules found.\n");
+              ^
+src/schedule.c:175:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("\n=== Schedule Master List ===\n");
+          ^
+src/schedule.c:179:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("Sched ID: %d | Train ID: %d | Date: %s | "
+                  ^
+src/schedule.c:5:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+11/15 files checked 85% done
+Checking src/search.c ...
+src/search.c:28:37: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    while (train_count < MAX_TRAINS && fgets(line, sizeof(line), ft)) {
+                                    ^
+src/search.c:41:43: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    while (schedule_count < MAX_SCHEDULES && fgets(line, sizeof(line), fs)) {
+                                          ^
+src/search.c:60:65: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+                if (schedules[j].train_id == trains[i].train_id &&
+                                                                ^
+src/search.c:32:35: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-13.3]
+            trains[train_count++] = t;
+                                  ^
+src/search.c:47:41: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-13.3]
+            schedules[schedule_count++] = s;
+                                        ^
+src/search.c:16:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+        if (ft) fclose(ft);
+           ^
+src/search.c:17:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+        if (fs) fclose(fs);
+           ^
+src/search.c:19:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/search.c:57:36: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.3]
+        if (trains[i].is_active && strcasecmp(trains[i].source, src) == 0 && strcasecmp(trains[i].destination, dest) == 0) {
+                                   ^
+src/search.c:18:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("[ERROR] Database files missing.\n");
+              ^
+src/search.c:35:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(ft);
+          ^
+src/search.c:50:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(fs);
+          ^
+src/search.c:53:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("\n=== Search Results: %s to %s on %s ===\n", src, dest, date);
+          ^
+src/search.c:65:27: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+                    printf("Train ID: %d | Name: %s | Sched ID: %d | Dep: %s | Arr: %s | Base Fare: Rs. %.2f\n",
+                          ^
+src/search.c:74:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("No trains found for this route and date.\n");
+              ^
+src/search.c:4:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+12/15 files checked 91% done
+Checking src/train.c ...
+src/train.c:23:29: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    char *line = malloc(256 * sizeof(char));
+                            ^
+src/train.c:30:39: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+    while (g_train_count < MAX_TRAINS &&
+                                      ^
+src/train.c:121:40: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-12.1]
+        if (g_trains[i].train_id == id && g_trains[i].is_active) {
+                                       ^
+src/train.c:39:39: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-13.3]
+            g_trains[g_train_count++] = t;
+                                      ^
+src/train.c:89:31: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-13.3]
+    g_trains[g_train_count++] = new_t;
+                              ^
+src/train.c:109:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-14.4]
+        if (g_trains[i].is_active) {
+           ^
+src/train.c:20:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/train.c:27:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/train.c:52:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+    if (!f) return 0;
+            ^
+src/train.c:69:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0; // RAM Array full
+        ^
+src/train.c:75:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+            return 0; // Duplicate ID
+            ^
+src/train.c:93:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return 0;
+        ^
+src/train.c:104:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+        return;
+        ^
+src/train.c:122:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-15.5]
+            return &g_trains[i];
+            ^
+src/train.c:26:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fclose(f);
+              ^
+src/train.c:44:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/train.c:55:16: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        fprintf(f, "%d|%s|%s|%s|%d|%.2f|%d\n",
+               ^
+src/train.c:61:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    fclose(f);
+          ^
+src/train.c:82:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    snprintf(new_t.train_name, sizeof(new_t.train_name), "%s", name);
+            ^
+src/train.c:83:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    snprintf(new_t.source, sizeof(new_t.source), "%s", src);
+            ^
+src/train.c:84:13: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    snprintf(new_t.destination, sizeof(new_t.destination), "%s", dest);
+            ^
+src/train.c:103:15: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+        printf("No trains found.\n");
+              ^
+src/train.c:107:11: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    printf("\n=== Train Master List ===\n");
+          ^
+src/train.c:110:19: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+            printf("ID: %d | Name: %s | From: %s | To: %s | Cap: %d | Fare: Rs. %.2f\n",
+                  ^
+src/train.c:43:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.3]
+    free(line);
+        ^
+src/train.c:3:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+13/15 files checked 98% done
+Checking src/utils.c ...
+src/utils.c:5:28: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+    while ((c = getchar()) != '\n' && c != EOF);
+                           ^
+src/utils.c:11:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-10.4]
+        if (len > 0 && buffer[len - 1] == '\n') buffer[len - 1] = '\0';
+                ^
+src/utils.c:17:12: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.7]
+    sprintf(pnr_buffer, "PNR2026%d", r);
+           ^
+14/15 files checked 99% done
+Checking src/waitlist.c ...
+15/15 files checked 100% done
+src/cancellation.c:11:1: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-5.6]
+typedef struct {
+^
+src/report.c:10:1: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-5.6]
+typedef struct {
+^
+include/types.h:34:1: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-2.3]
+typedef struct {
+^
+src/schedule.c:60:5: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-8.7]
+int save_schedules(void)
+    ^
+src/train.c:50:5: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-8.7]
+int save_trains(void) {
+    ^

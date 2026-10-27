@@ -32,7 +32,7 @@ int init_schedules(void)
         Schedule s = {0};
 
         if (sscanf(line,
-                   "%d|%d|%19[^|]|%5[^|]|%5[^|]|"
+                   "%d|%d|%11[^|]|%5[^|]|%5[^|]|"
                    "%d|%d|%d|%d|%d|%d|%d|%d|%d",
                    &s.schedule_id,
                    &s.train_id,
@@ -66,7 +66,7 @@ int save_schedules(void)
     }
 
     for (int i = 0; i < g_schedule_count; i++) {
-        Schedule *s = &g_schedules[i];
+        const Schedule *s = &g_schedules[i];
 
         if (fprintf(f, "%d|%d|%s|%s|%s|%d|%d|%d|%d|"
                     "%d|%d|%d|%d|%d\n",

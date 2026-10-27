@@ -5,7 +5,7 @@ void log_message(const char *level, const char *message) {
     if (!file) return;
 
     time_t now = time(NULL);
-    struct tm *t = localtime(&now);
+    const struct tm *t = localtime(&now);
     char time_str[30];
     strftime(time_str, sizeof(time_str), "%Y-%m-%d %H:%M:%S", t);
 

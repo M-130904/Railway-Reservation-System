@@ -3,3 +3,6 @@
 9002|Shatabdi Test|Delhi|Agra|300|800.00|1
 9003|Schedule Test Train|Delhi|Agra|300|800.00|1
 705973|Coverage Test Train|Delhi|Mumbai|100|500.00|1
+105|mysuru express|chennai|mysuru|100|600.00|1
+106|hydrabad express|chennai|hydrabad|100|600.00|1
+107|kochi express|chennai|kochi|100|600.00|1

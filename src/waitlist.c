@@ -1,9 +1,7 @@
 #include "waitlist.h"
-#include "logger.h"
+#ifndef WAITLIST_H
+#define WAITLIST_H
 
-int process_waitlist_promotion(int schedule_id, TrainClass t_class) {
-    (void)schedule_id;
-    (void)t_class;
-    log_message("INFO", "Waitlist promotion evaluated");
-    return 1;
-}
+#include "types.h"
+
+#endif

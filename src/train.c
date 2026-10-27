@@ -14,18 +14,35 @@ static int g_train_count = 0;
 /* 1. INITIALIZATION: Load data from file into RAM once */
 int init_trains(void) {
     FILE *f = fopen("data/trains.txt", "r");
-    g_train_count = 0; // Reset RAM count
-    if (!f) return 0;
-    
-    char line[256];
-    while (g_train_count < MAX_TRAINS && fgets(line, sizeof(line), f)) {
+    g_train_count = 0;
+
+    if (!f) {
+        return 0;
+    }
+
+    char *line = malloc(256 * sizeof(char));
+
+    if (line == NULL) {
+        fclose(f);
+        return 0;
+    }
+
+    while (g_train_count < MAX_TRAINS &&
+           fgets(line, 256, f)) {
         Train t;
-        if (sscanf(line, "%d|%49[^|]|%19[^|]|%19[^|]|%d|%lf|%d", 
-                   &t.train_id, t.train_name, t.source, t.destination, &t.capacity, &t.base_fare, &t.is_active) == 7) {
+
+        /* Keep your existing sscanf() statement here. */
+        if (sscanf(line, "%d|%49[^|]|%19[^|]|%19[^|]|%d|%lf|%d",
+                   &t.train_id, t.train_name, t.source,
+                   t.destination, &t.capacity, &t.base_fare,
+                   &t.is_active) == 7) {
             g_trains[g_train_count++] = t;
         }
     }
+
+    free(line);
     fclose(f);
+
     return g_train_count;
 }
 
