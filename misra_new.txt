@@ -1,0 +1,93 @@
+include/types.h:4:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+include/types.h:7:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.10]
+#include <time.h>
+^
+src/booking.c:20:9: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.3]
+    if (pthread_mutex_lock(&booking_mutex) == 0) {
+        ^
+src/booking.c:8:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>      /* MISRA 21.6 deviation: file I/O + console */
+^
+src/cancellation.c:90:10: style: The scope of the variable 'lines' can be reduced. [variableScope]
+    char lines[MAX_RECORDS][LINE_SIZE];
+         ^
+src/cancellation.c:93:9: style: The scope of the variable 'count' can be reduced. [variableScope]
+    int count = 0;
+        ^
+src/cancellation.c:94:9: style: The scope of the variable 'found' can be reduced. [variableScope]
+    int found = 0;
+        ^
+src/cancellation.c:95:9: style: The scope of the variable 'failed' can be reduced. [variableScope]
+    int failed = 0;                                            /* 15.5: replaces early returns */
+        ^
+src/cancellation.c:96:9: style: The scope of the variable 'updated_count' can be reduced. [variableScope]
+    int updated_count = 0;
+        ^
+src/cancellation.c:97:9: style: The scope of the variable 'read_ok' can be reduced. [variableScope]
+    int read_ok = 1;
+        ^
+src/cancellation.c:266:9: style: The scope of the variable 'count' can be reduced. [variableScope]
+    int count = 0;
+        ^
+src/cancellation.c:267:9: style: The scope of the variable 'read_ok' can be reduced. [variableScope]
+    int read_ok = 1;
+        ^
+src/cancellation.c:268:9: style: The scope of the variable 'promoted_any' can be reduced. [variableScope]
+    int promoted_any = 0;
+        ^
+src/cancellation.c:366:9: style: The scope of the variable 'count' can be reduced. [variableScope]
+    int count = 0;
+        ^
+src/cancellation.c:367:9: style: The scope of the variable 'target_index' can be reduced. [variableScope]
+    int target_index = -1;
+        ^
+src/cancellation.c:368:9: style: The scope of the variable 'read_ok' can be reduced. [variableScope]
+    int read_ok = 1;
+        ^
+src/cancellation.c:6:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+src/main.c:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+src/main.c:3:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.10]
+#include <time.h> // <-- Required for time()
+^
+src/passenger.c:30:29: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-11.5]
+    BookingThreadArgs *args = arg;
+                            ^
+src/passenger.c:198:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.3]
+            if (pthread_create(&booking_tid, NULL,
+                ^
+src/passenger.c:205:17: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.3]
+            if (pthread_join(booking_tid, NULL) != 0) {
+                ^
+src/passenger.c:8:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+src/report.c:1:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+src/schedule.c:5:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+src/search.c:67:18: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-17.3]
+                (strcasecmp(trains[i].source, src) == 0) &&
+                 ^
+src/search.c:8:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.1]
+#define _POSIX_C_SOURCE 200809L
+^
+src/search.c:4:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>
+^
+src/train.c:3:0: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-21.6]
+#include <stdio.h>      /* MISRA 21.6 deviation: file I/O + console */
+^
+src/schedule.c:60:5: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-8.7]
+int save_schedules(void)
+    ^
+src/train.c:44:5: style: misra violation (use --rule-texts=<file> to get proper output) [misra-c2012-8.7]
+int save_trains(void) {
+    ^

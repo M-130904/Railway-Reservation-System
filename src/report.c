@@ -21,70 +21,75 @@ typedef struct {
     char txn_id[20];
     char pay_status[20];
     char date[12];
-} ReservationRecord;
+} ReportReservation;
 
 /* Helper function to load reservations into an in-memory array */
-static int load_reservations_array(ReservationRecord reservations[], int max_size) {
-    FILE *f = fopen(RESERVATIONS_FILE, "r");
-    if (!f) return 0;
-    
-    char line[LINE_LENGTH];
+static int load_reservations_array(ReportReservation reservations[], int max_size) {
     int count = 0;
-    
-    while (count < max_size && fgets(line, sizeof(line), f)) {
-        ReservationRecord r;
-        if (sscanf(line,
-           "%14[^|]|%d|%d|%49[^|]|%d|%d|%255[^|]|%lf|%d|%d|%19[^|]|%19[^|]|%11s",
-           r.pnr, &r.train_id, &r.sched_id, r.username,
-           &r.t_class, &r.p_count, r.p_details, &r.fare,
-           &r.status, &r.seat_wl, r.txn_id, r.pay_status, r.date) == 13) {
-    reservations[count++] = r;
-}
+    FILE *f = fopen(RESERVATIONS_FILE, "r");
+
+    if (f != NULL) {
+        char line[LINE_LENGTH];
+
+        while ((count < max_size) && (fgets(line, sizeof(line), f) != NULL)) {
+            ReportReservation r;
+
+            if (sscanf(line,
+               "%14[^|]|%d|%d|%49[^|]|%d|%d|%255[^|]|%lf|%d|%d|%19[^|]|%19[^|]|%11s",
+               r.pnr, &r.train_id, &r.sched_id, r.username,
+               &r.t_class, &r.p_count, r.p_details, &r.fare,
+               &r.status, &r.seat_wl, r.txn_id, r.pay_status, r.date) == 13) {
+                reservations[count] = r;
+                count++;
+            }
+        }
+        (void)fclose(f);
     }
-    fclose(f);
+
     return count;
 }
 
 void generate_system_reports(void) {
-    ReservationRecord reservations[MAX_RESERVATIONS];
+    ReportReservation reservations[MAX_RESERVATIONS];
     int total_bookings = load_reservations_array(reservations, MAX_RESERVATIONS);
 
     if (total_bookings == 0) {
-        printf("\n[REPORT] No reservations recorded yet.\n");
-        return;
-    }
+        (void)printf("\n[REPORT] No reservations recorded yet.\n");
+    } else {
+        int confirmed_count = 0;
+        int waitlist_count = 0;
+        int cancelled_count = 0;
+        double total_revenue = 0.0;
+        double total_refunds = 0.0;
 
-    int confirmed_count = 0;
-    int waitlist_count = 0;
-    int cancelled_count = 0;
-    double total_revenue = 0.0;
-    double total_refunds = 0.0;
-
-    // Process entirely using the in-memory array of structures
-    for (int i = 0; i < total_bookings; i++) {
-        if (reservations[i].status == 1) { // CONFIRMED
-            confirmed_count++;
-            total_revenue += reservations[i].fare;
-        } else if (reservations[i].status == 2) { // WAITLIST
-            waitlist_count++;
-            total_revenue += reservations[i].fare; // Waitlisted tickets are also paid for
-        } else if (reservations[i].status == 3) { // CANCELLED
-            cancelled_count++;
-            total_refunds += reservations[i].fare;
+        // Process entirely using the in-memory array of structures
+        for (int i = 0; i < total_bookings; i++) {
+            if (reservations[i].status == 1) { // CONFIRMED
+                confirmed_count++;
+                total_revenue += reservations[i].fare;
+            } else if (reservations[i].status == 2) { // WAITLIST
+                waitlist_count++;
+                total_revenue += reservations[i].fare; // Waitlisted tickets are also paid for
+            } else if (reservations[i].status == 3) { // CANCELLED
+                cancelled_count++;
+                total_refunds += reservations[i].fare;
+            } else {
+                /* unknown status: not counted */
+            }
         }
-    }
 
-    printf("\n==================================================\n");
-    printf("         RAILWAY SYSTEM MANAGEMENT REPORT          \n");
-    printf("==================================================\n");
-    printf(" Total Reservations Recorded : %d\n", total_bookings);
-    printf(" ------------------------------------------------\n");
-    printf(" [CONFIRMED TICKETS]         : %d\n", confirmed_count);
-    printf(" [WAITLISTED TICKETS]        : %d\n", waitlist_count);
-    printf(" [CANCELLED TICKETS]         : %d\n", cancelled_count);
-    printf(" ------------------------------------------------\n");
-    printf(" Gross Revenue Collected     : Rs. %.2f\n", total_revenue);
-    printf(" Total Refunds Processed     : Rs. %.2f\n", total_refunds);
-    printf(" Net System Revenue          : Rs. %.2f\n", total_revenue - total_refunds);
-    printf("==================================================\n");
+        (void)printf("\n==================================================\n");
+        (void)printf("         RAILWAY SYSTEM MANAGEMENT REPORT          \n");
+        (void)printf("==================================================\n");
+        (void)printf(" Total Reservations Recorded : %d\n", total_bookings);
+        (void)printf(" ------------------------------------------------\n");
+        (void)printf(" [CONFIRMED TICKETS]         : %d\n", confirmed_count);
+        (void)printf(" [WAITLISTED TICKETS]        : %d\n", waitlist_count);
+        (void)printf(" [CANCELLED TICKETS]         : %d\n", cancelled_count);
+        (void)printf(" ------------------------------------------------\n");
+        (void)printf(" Gross Revenue Collected     : Rs. %.2f\n", total_revenue);
+        (void)printf(" Total Refunds Processed     : Rs. %.2f\n", total_refunds);
+        (void)printf(" Net System Revenue          : Rs. %.2f\n", total_revenue - total_refunds);
+        (void)printf("==================================================\n");
+    }
 }

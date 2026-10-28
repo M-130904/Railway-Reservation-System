@@ -31,11 +31,11 @@ typedef enum {
     STATUS_CANCELLED = 3
 } TicketStatus;
 
-typedef struct {
-    char username[MAX_NAME_LEN];
-    char password[MAX_NAME_LEN];
-    UserRole role;
-} User;
+// typedef struct {
+//     char username[MAX_NAME_LEN];
+//     char password[MAX_NAME_LEN];
+//     UserRole role;
+// } User;
 
 typedef struct {
     int train_id;
@@ -53,8 +53,14 @@ typedef struct {
     char journey_date[MAX_DATE_LEN];
     char departure[MAX_TIME_LEN];
     char arrival[MAX_TIME_LEN];
-    int ac1_cap, ac2_cap, ac3_cap, sl_cap;
-    int ac1_booked, ac2_booked, ac3_booked, sl_booked;
+    int ac1_cap;
+    int ac2_cap;
+    int ac3_cap;
+    int sl_cap;
+    int ac1_booked;
+    int ac2_booked;
+    int ac3_booked;
+    int sl_booked;
     int is_active;
 } Schedule;
 
