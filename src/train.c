@@ -1,6 +1,6 @@
 #include "train.h"
 #include "logger.h"
-#include <stdio.h>
+#include <stdio.h>      /* MISRA 21.6 deviation: file I/O + console */
 #include <string.h>
 
 #define MAX_TRAINS 100
@@ -16,111 +16,114 @@ int init_trains(void) {
     FILE *f = fopen("data/trains.txt", "r");
     g_train_count = 0;
 
-    if (!f) {
-        return 0;
-    }
+    if (f != NULL) {
+        /* FIX 11.5 + 21.3: stack buffer instead of malloc/free,
+           removes void*->char* conversion and heap allocation. */
+        char line[256];
 
-    char *line = malloc(256 * sizeof(char));
+        while ((g_train_count < MAX_TRAINS) &&
+               (fgets(line, (int)sizeof(line), f) != NULL)) {
+            Train t;
 
-    if (line == NULL) {
-        fclose(f);
-        return 0;
-    }
-
-    while (g_train_count < MAX_TRAINS &&
-           fgets(line, 256, f)) {
-        Train t;
-
-        /* Keep your existing sscanf() statement here. */
-        if (sscanf(line, "%d|%49[^|]|%19[^|]|%19[^|]|%d|%lf|%d",
-                   &t.train_id, t.train_name, t.source,
-                   t.destination, &t.capacity, &t.base_fare,
-                   &t.is_active) == 7) {
-            g_trains[g_train_count++] = t;
+            if (sscanf(line, "%d|%49[^|]|%19[^|]|%19[^|]|%d|%lf|%d",
+                       &t.train_id, t.train_name, t.source,
+                       t.destination, &t.capacity, &t.base_fare,
+                       &t.is_active) == 7) {
+                g_trains[g_train_count] = t;
+                g_train_count++;
+            }
         }
-    }
 
-    free(line);
-    fclose(f);
+        (void)fclose(f);
+    }
 
     return g_train_count;
 }
 
 /* 2. TERMINATION / PERSISTENCE: Save RAM array back to disk */
 int save_trains(void) {
+    int result = 1;
     FILE *f = fopen("data/trains.txt", "w");
-    if (!f) return 0;
-    
-    for (int i = 0; i < g_train_count; i++) {
-        fprintf(f, "%d|%s|%s|%s|%d|%.2f|%d\n", 
-                g_trains[i].train_id, g_trains[i].train_name, 
-                g_trains[i].source, g_trains[i].destination, 
-                g_trains[i].capacity, g_trains[i].base_fare, 
-                g_trains[i].is_active);
+
+    if (f == NULL) {
+        result = 0;
+    } else {
+        for (int i = 0; i < g_train_count; i++) {
+            (void)fprintf(f, "%d|%s|%s|%s|%d|%.2f|%d\n",
+                          g_trains[i].train_id, g_trains[i].train_name,
+                          g_trains[i].source, g_trains[i].destination,
+                          g_trains[i].capacity, g_trains[i].base_fare,
+                          g_trains[i].is_active);
+        }
+        (void)fclose(f);
     }
-    fclose(f);
-    return 1;
+
+    return result;
 }
 
 /* 3. OPERATIONS: Instant manipulation in RAM */
 
-int add_train(int id, const char *name, const char *src, const char *dest, int capacity, double base_fare) {
-    if (g_train_count >= MAX_TRAINS) {
-        return 0; // RAM Array full
-    }
+int add_train(int id, const char *name, const char *src, const char *dest,
+              int capacity, double base_fare) {
+    int result = 0;
 
-    // Check if train ID already exists in RAM
-    for (int i = 0; i < g_train_count; i++) {
-        if (g_trains[i].train_id == id) {
-            return 0; // Duplicate ID
+    if (g_train_count < MAX_TRAINS) {
+        int duplicate = 0;
+
+        for (int i = 0; (i < g_train_count) && (duplicate == 0); i++) {
+            if (g_trains[i].train_id == id) {
+                duplicate = 1;
+            }
+        }
+
+        if (duplicate == 0) {
+            Train new_t;
+
+            new_t.train_id = id;
+            (void)snprintf(new_t.train_name, sizeof(new_t.train_name), "%s", name);
+            (void)snprintf(new_t.source, sizeof(new_t.source), "%s", src);
+            (void)snprintf(new_t.destination, sizeof(new_t.destination), "%s", dest);
+            new_t.capacity = capacity;
+            new_t.base_fare = base_fare;
+            new_t.is_active = 1;
+
+            g_trains[g_train_count] = new_t;
+            g_train_count++;
+
+            if (save_trains() != 0) {
+                log_message("INFO", "Train added successfully");
+                result = 1;
+            }
         }
     }
 
-    // Populate a new Train structure and add it to the RAM array
-    Train new_t;
-    new_t.train_id = id;
-    snprintf(new_t.train_name, sizeof(new_t.train_name), "%s", name);
-    snprintf(new_t.source, sizeof(new_t.source), "%s", src);
-    snprintf(new_t.destination, sizeof(new_t.destination), "%s", dest);
-    new_t.capacity = capacity;
-    new_t.base_fare = base_fare;
-    new_t.is_active = 1;
-
-    g_trains[g_train_count++] = new_t;
-
-    // Persist changes to disk
-    if (!save_trains()) {
-        return 0;
-    }
-
-    log_message("INFO", "Train added successfully");
-    return 1;
+    return result;
 }
 
 void list_trains(void) {
-    // Reads directly from RAM (super fast!)
     if (g_train_count == 0) {
-        printf("No trains found.\n");
-        return;
-    }
-
-    printf("\n=== Train Master List ===\n");
-    for (int i = 0; i < g_train_count; i++) {
-        if (g_trains[i].is_active) {
-            printf("ID: %d | Name: %s | From: %s | To: %s | Cap: %d | Fare: Rs. %.2f\n",
-                   g_trains[i].train_id, g_trains[i].train_name, 
-                   g_trains[i].source, g_trains[i].destination, 
-                   g_trains[i].capacity, g_trains[i].base_fare);
+        (void)printf("No trains found.\n");
+    } else {
+        (void)printf("\n=== Train Master List ===\n");
+        for (int i = 0; i < g_train_count; i++) {
+            if (g_trains[i].is_active != 0) {
+                (void)printf("ID: %d | Name: %s | From: %s | To: %s | Cap: %d | Fare: Rs. %.2f\n",
+                             g_trains[i].train_id, g_trains[i].train_name,
+                             g_trains[i].source, g_trains[i].destination,
+                             g_trains[i].capacity, g_trains[i].base_fare);
+            }
         }
     }
 }
 
 Train* find_train_by_id(int id) {
-    // Directly search the RAM array and return a safe pointer to the element
-    for (int i = 0; i < g_train_count; i++) {
-        if (g_trains[i].train_id == id && g_trains[i].is_active) {
-            return &g_trains[i];
+    Train *result = NULL;
+
+    for (int i = 0; (i < g_train_count) && (result == NULL); i++) {
+        if ((g_trains[i].train_id == id) && (g_trains[i].is_active != 0)) {
+            result = &g_trains[i];
         }
     }
-    return NULL;
+
+    return result;
 }
