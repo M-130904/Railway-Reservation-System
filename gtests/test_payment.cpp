@@ -192,3 +192,9 @@ TEST_F(PaymentTest, ZeroAmountCurrentlyAccepted) {
     EXPECT_EQ(process_payment(0.00, txnId), 1);
     EXPECT_TRUE(strncmp(txnId, "TXN", 3) == 0);
 }
+
+extern "C" void generate_pnr(char *pnr_buffer) {
+    if (pnr_buffer != nullptr) {
+        strcpy(pnr_buffer, "PNR0001");
+    }
+}

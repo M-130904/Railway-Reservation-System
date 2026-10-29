@@ -87,18 +87,20 @@ static int update_schedule_seats_ram(
     int *booked_after)
 {
     FILE *f;
-    char lines[MAX_RECORDS][LINE_SIZE];
+    //char lines[MAX_RECORDS][LINE_SIZE];
     char line[LINE_SIZE];
     int result = 0;                                            /* 15.5 */
-    int count = 0;
-    int found = 0;
-    int failed = 0;                                            /* 15.5: replaces early returns */
-    int updated_count = 0;
-    int read_ok = 1;
+    //int count = 0;
+                                                /* 15.5: replaces early returns */
+    
+    
 
     f = fopen("data/schedules.txt", "r");
 
     if (f != NULL) {
+        char lines[MAX_RECORDS][LINE_SIZE];
+        int count=0;
+        int read_ok = 1;
         while ((count < MAX_RECORDS) &&
                (fgets(line, (int)sizeof(line), f) != NULL)) {
             int length;
@@ -126,9 +128,14 @@ static int update_schedule_seats_ram(
         if (fclose(f) != 0) {
             read_ok = 0;
         }
-
+        //int found = 0;
+        //int failed = 0;
         if (read_ok != 0) {
+            int found = 0;
+            int failed = 0;
+            int updated_count = 0;
             for (int i = 0; (i < count) && (found == 0) && (failed == 0); i++) {
+                
                 Schedule s = {0};
                 int fields;
 
@@ -181,7 +188,7 @@ static int update_schedule_seats_ram(
                             failed = 1;                        /* was: return 0 */
                             break;
                     }
-
+                    //int updated_count = 0;
                     if (failed == 0) {
                         int new_count = (*booked) + delta;     /* 12.1 */
 
@@ -189,8 +196,8 @@ static int update_schedule_seats_ram(
                             failed = 1;                        /* was: return 0 */
                         } else {
                             int length;
-
                             *booked = new_count;
+                            //int updated_count = 0;
                             updated_count = new_count;
 
                             length = snprintf(
@@ -244,7 +251,7 @@ static int update_schedule_seats_ram(
                     if (fclose(f) != 0) {
                         write_ok = 0;
                     }
-
+                    //int updated_count = 0;
                     if ((write_ok != 0) && (booked_after != NULL)) {
                         *booked_after = updated_count;
                     }
@@ -263,14 +270,15 @@ static void promote_waitlist_fifo(int schedule_id, int train_class)
 {
     FILE *f;
     ReservationRecord records[MAX_RECORDS];
-    int count = 0;
-    int read_ok = 1;
-    int promoted_any = 0;
+    
     char line[LINE_SIZE];
 
     f = fopen("data/reservations.txt", "r");
 
-    if (f != NULL) {                                           /* 15.5: no early return */
+    if (f != NULL) {  
+        int count = 0;
+        int read_ok = 1;
+                                                 /* 15.5: no early return */
         while ((count < MAX_RECORDS) &&
                (fgets(line, (int)sizeof(line), f) != NULL)) {
             if (parse_reservation(line, &records[count]) == 0) {
@@ -290,6 +298,7 @@ static void promote_waitlist_fifo(int schedule_id, int train_class)
         }
 
         if (read_ok != 0) {
+            int promoted_any = 0;
             int continue_promotion = 1;
 
             while (continue_promotion != 0) {
@@ -363,9 +372,7 @@ int cancel_ticket(const char *pnr)
 {
     FILE *f;
     ReservationRecord records[MAX_RECORDS];
-    int count = 0;
-    int target_index = -1;
-    int read_ok = 1;
+    
     int result = 0;                                            /* 15.5 */
     char line[LINE_SIZE];
 
@@ -377,6 +384,9 @@ int cancel_ticket(const char *pnr)
         if (f == NULL) {
             (void)printf("[ERROR] Cannot open reservations.txt.\n"); /* 17.7 */
         } else {
+            int count = 0;
+            int target_index = -1;
+            int read_ok = 1;
             while ((count < MAX_RECORDS) &&
                    (fgets(line, (int)sizeof(line), f) != NULL)) {
                 if (parse_reservation(line, &records[count]) == 0) {

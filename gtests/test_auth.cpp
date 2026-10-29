@@ -1,9 +1,18 @@
 #include <gtest/gtest.h>
+#include <cerrno>
 #include <cstdio>
 #include <cstring>
 #include <unistd.h>
-#include <sys/stat.h>
 #include <limits.h>
+
+#ifdef _WIN32
+#include <direct.h>
+#define MAKE_DIR(path) _mkdir(path)
+#else
+#include <sys/stat.h>
+#include <sys/types.h>
+#define MAKE_DIR(path) mkdir((path), 0700)
+#endif
 
 extern "C" {
 #include "auth.h"
@@ -53,8 +62,8 @@ TEST(AuthTest, RegisterUser_FileOpenFailure) {
     char original_dir[PATH_MAX];
     ASSERT_NE(getcwd(original_dir, sizeof(original_dir)), nullptr);
 
-    ASSERT_EQ(mkdir("build/auth_failure_test", 0700) == 0 ||
-              errno == EEXIST, true);
+    ASSERT_EQ(MAKE_DIR("build/auth_failure_test") == 0 ||
+          errno == EEXIST, true);
     ASSERT_EQ(chdir("build/auth_failure_test"), 0);
 
     // No data directory exists here, so both file opens fail.

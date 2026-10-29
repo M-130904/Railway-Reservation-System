@@ -20,7 +20,7 @@ extern "C" {
  * schedule.c only needs to know whether the requested train exists.
  * Do not link train.o when using this stub.
  */
-extern "C" __attribute__((weak))
+extern "C" 
 Train *find_train_by_id(int train_id)
 {
     static Train test_train = {};

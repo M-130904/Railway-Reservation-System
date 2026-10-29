@@ -54,25 +54,42 @@ $(APP_OBJ_DIR)/%.o: src/%.c
 run: $(TARGET)
 	./$(TARGET)
 
-# Google Test
+# ---------- Google Test ----------
+TEST_OBJ_DIR = $(TEST_DIR)/obj
+TEST_CORE_OBJS = $(CORE_SRC:src/%.c=$(TEST_OBJ_DIR)/%.o)
+GTEST_RPATH = -Wl,-rpath,/usr/local/lib64
+
+# Compile library sources as C (gcc), not C++
+$(TEST_OBJ_DIR)/%.o: src/%.c
+	mkdir -p $(TEST_OBJ_DIR)
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+
+-include $(TEST_CORE_OBJS:.o=.d)
+
+# Build every test, then run them one after another
 gtests: $(addprefix $(TEST_DIR)/,$(GTEST_NAMES))
-	@set -e; for t in $^; do \
-		echo "Running $$t"; ./$$t; \
-	done
+	@fail=0; for t in $^; do \
+		echo "== Running $$t"; ./$$t || fail=1; \
+	done; exit $$fail
 
-# General test linking
-$(TEST_DIR)/%: gtests/%.cpp $(CORE_SRC)
+# General rule: C++ test file + C objects
+$(TEST_DIR)/%: gtests/%.cpp $(TEST_CORE_OBJS)
 	mkdir -p $(TEST_DIR)
-	$(CXX) $(CXXFLAGS) $(GTEST_INCLUDE) $< $(CORE_SRC) \
-		$(GTEST_LIBDIR) $(GTEST_LIBS) -o $@
+	$(CXX) $(CXXFLAGS) $(GTEST_INCLUDE) $< $(TEST_CORE_OBJS) \
+		$(GTEST_LIBDIR) $(GTEST_RPATH) -W1,--allow-multiple-definition $(GTEST_LIBS) -o $@
 
-# Schedule test uses a controlled train stub
-$(TEST_DIR)/test_schedule: gtests/test_schedule.cpp \
-                            $(filter-out src/train.c,$(CORE_SRC))
+# One rule for every test: link all core objects; a test's own stubs win
+$(TEST_DIR)/%: gtests/%.cpp $(TEST_CORE_OBJS)
+	mkdir -p $(TEST_DIR)
+	$(CXX) $(CXXFLAGS) $(GTEST_INCLUDE) $< $(TEST_CORE_OBJS) \
+		$(GTEST_LIBDIR) $(GTEST_RPATH) -Wl,--allow-multiple-definition $(GTEST_LIBS) -o $@
+
+# One rule for every test
+$(TEST_DIR)/%: gtests/%.cpp $(TEST_CORE_OBJS)
 	mkdir -p $(TEST_DIR)
 	$(CXX) $(CXXFLAGS) $(GTEST_INCLUDE) $< \
-		$(filter-out src/train.c,$(CORE_SRC)) \
-		$(GTEST_LIBDIR) $(GTEST_LIBS) -o $@
+		$(filter-out $(addprefix $(TEST_OBJ_DIR)/,$(addsuffix .o,$($*_EXCLUDE))),$(TEST_CORE_OBJS)) \
+		$(GTEST_LIBDIR) $(GTEST_RPATH) $(GTEST_LIBS) -o $@
 
 # Cppcheck
 cppcheck:
@@ -81,7 +98,7 @@ cppcheck:
 
 # MISRA analysis
 misra:
-	cppcheck --addon=misra.py --enable=style \
+	cppcheck --addon=/ucrt64/share/cppcheck/addons/misra.py --enable=style \
 		--error-exitcode=1 -I include $(SRC)
 
 # Coverage
@@ -95,24 +112,25 @@ coverage:
 	done
 	@set -e; for t in $(GTEST_SRC); do \
 		n=$$(basename "$${t%.cpp}"); \
-		objs="$(COV_OBJ_DIR)"/*.o; \
-		if [ "$$n" = "test_schedule" ]; then \
-			objs=""; \
-			for o in $(COV_OBJ_DIR)/*.o; do \
-				case "$$o" in */train.o) ;; *) objs="$$objs $$o" ;; esac; \
-			done; \
-		fi; \
+		objs=""; \
+		for o in $(COV_OBJ_DIR)/*.o; do \
+			case "$$n:$$o" in \
+				test_passenger:*booking.o|test_passenger:*cancellation.o|test_passenger:*search.o|test_passenger:*utils.o) ;; \
+				test_schedule:*train.o) ;; \
+				*) objs="$$objs $$o" ;; \
+			esac; \
+		done; \
 		$(CXX) $(CXXFLAGS) --coverage $(GTEST_INCLUDE) \
 			"$$t" $$objs $(GTEST_LIBDIR) $(GTEST_LIBS) \
 			-o "$(COV_TEST_DIR)/$$n"; \
 	done
 	@set -e; for t in $(COV_TEST_DIR)/test_*; do \
+		[ -f "$$t" ] || continue; \
 		echo "Running $$t"; "$$t"; \
 	done
 	gcovr --root . --filter 'src/.*' --txt-summary \
 		--html-details $(COV_DIR)/index.html $(COV_DIR)
 	@echo "HTML coverage report: $(COV_DIR)/index.html"
-
 # Valgrind Memcheck
 valgrind: memcheck
 
